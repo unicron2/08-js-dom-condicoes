@@ -3,48 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hora do dia</title>
 </head>
-<body>
+<body onload= "carregar()">
+
     <header>
         <h1>Hora do dia</h1>
     </header>
-    <section>
-        <div id="img">
 
+    <section>
+        <div id="msg">
+            Aqui vai aperecer mensagem...
         </div>
-        <div id="foto">
-            <img id="imagem" src="fotomanha.png" alt="manha">
+
+        <div id="img">
+            <img src="foto-dia.jpg" alt="Foto do dia" id="imagem">
         </div>
     </section>
+
     <footer>
-        <p>&copy;CursoemVideo</p>
+        <p>&copy; João Marcos</p>
     </footer>
 
-    <script>
-
-        function carregar(){
-
-            var msg = window.document.getElementById('msg')
-            var img = window.document.getElementById('imagem')
-            var data = new Date()
-            var hora = data.getHours()
-            msg.innerHTML = ' Agora são ${hora} horas'
-            if (hora >= 12 && hora < 18){
-                
-            }
-        }
-
-    </script>
-
-</body>
-    
-
     <style>
-
         body {
-            background: rgb(78, 142, 236);
-            font: normal 15pt Arial;
+            background-color: rgb(70, 142, 236);
+            font: normal 15pt Arial
         }
 
         header {
@@ -54,19 +38,60 @@
 
         section {
             background: white;
-            border-radius: 18px;
+            border-radius: 10px;
             padding: 15px;
             width: 500px;
             margin: auto;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
+            
         }
 
+        div {
+            text-align: center;
+            padding: 8px;
+        }
+
+
         footer {
-            color:white;
+            color: white;
             text-align: center;
             font-style: italic;
         }
 
+        img {
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+        }
     </style>
 
+    <script>
+        function carregar() {
+            var msg = window.document.getElementById("msg");
+            var img = window.document.getElementById("imagem");
+            var data = new Date();
+            var hora = data.getHours();
+
+            msg.innerHTML = `Agora são ${hora} horas.`;
+
+            //Dia
+            if (hora >= 0 && hora < 12) {
+                img.src = "imagem/foto-dia.jpg";
+                document.body.style.background = "#6f85aa";
+            }
+
+            //Tarde
+            else if (hora >= 12 && hora < 18) {
+                img.src = "imagem/foto-tarde.jpg";
+                document.body.style.background = "#fed38f";
+            }
+
+            //Noite
+            else {
+                img.src = "imagem/foto-noite.jpg";
+                document.body.style.background = "#07334b";
+            }
+        }
+    </script>
+
+</body>
 </html>
