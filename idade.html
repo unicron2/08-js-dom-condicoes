@@ -13,30 +13,98 @@
 
     <section>
         <div>
-            <p>Ano de nascimento: 
+            <p>Ano de nascimento:
                 <input type="number" name="txtano" id="txtano" min="0">
             </p>
+            
+            <p>Sexo:
+                <input type="radio" name="radsex" id="mas" checked>
+                <label for="mas">Masculino</label>
+                <input type="radio" name="radsex" id="fem">
+                <label for="fem">Feminino</label>
+            </p>
             <p>
-                <input type="button" value="verfificar" onclick="verificar">
+                <input type="button" value="Verificar" onclick="verificar()">
             </p>
         </div>
 
-        <div id="img">
-            <img src="foto-jovem" alt="Foto do dia" id="imagem">
+        <div id="res">
+            Preencha os dados acima para verificar ver o resultado! 
         </div>
     </section>
 
     <footer>
         <p>&copy; João Marcos</p>
     </footer>
-
+    
     <script>
-
         function verificar(){
+            var data = new Date()
+            var ano = data.getFullYear()
+            var fano = document.getElementById('txtano')
+            var res = document.getElementById('res')
+
+            if(fano.value.length == 0 || Number(fano.value) > ano){
+                window.alert("[ERRO] Verifique os dados e tente novamente!");
+            }
+            else{
+                var fsex = document.getElementsById('radsex')
+                var idade = ano - Number(fano.value)
+                var genero =''
+                if(fsex[0].checked){
+                    genero = 'homem'
+                }
+                else if(fsex[1].checked){
+                    genero = 'mulher'
+                }
+                res.style.textAlign = 'center'
+                res.innerHTML = `Detectamos ${genero} com ${idade} anos.`
+            }
+        }    
+        
+    </script>
+
+    <style>
+        body {
+            background-color: rgb(70, 142, 236);
+            font: normal 15pt Arial
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
             
         }
 
-    </script>
+        div {
+            text-align: center;
+            padding: 8px;
+        }
+
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+        img {
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+
+    
 
 </body>
 </html>
